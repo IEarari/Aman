@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context=".Sos">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="100dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/policebtn"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/policebtn"
+            android:drawableStart="@drawable/police"
+            android:drawableLeft="@drawable/police"
+            android:padding="20dp"
+            android:text="@string/police"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/ambbtn"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="40dp"
+            android:background="@drawable/doctorbtn"
+            android:drawableStart="@drawable/doctor"
+            android:drawableLeft="@drawable/doctor"
+            android:padding="20dp"
+            android:text="@string/amb"
+            android:textColor="#505050" />
+
+        <Button
+            android:id="@+id/firebtn"
+            android:layout_width="250dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/firebtn"
+            android:drawableStart="@drawable/fire"
+            android:drawableLeft="@drawable/fire"
+            android:padding="20dp"
+            android:text="@string/fire"
+            android:textColor="#ffffff" />
+    </LinearLayout>
+</RelativeLayout>

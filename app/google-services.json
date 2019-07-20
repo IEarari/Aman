@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "788827458956",
+    "firebase_url": "https://sos-app-a5ae5.firebaseio.com",
+    "project_id": "sos-app-a5ae5",
+    "storage_bucket": "sos-app-a5ae5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:788827458956:android:e8fcd18634afe4a7",
+        "android_client_info": {
+          "package_name": "ibraheem.illdev.sos"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "788827458956-m0h2difo1uia0i7q3spcrtflaqb10sv1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2B94wfCEEdqbTWl8VDfu88SmTYWb_hig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "788827458956-m0h2difo1uia0i7q3spcrtflaqb10sv1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
