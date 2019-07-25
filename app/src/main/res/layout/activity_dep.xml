@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical"
+    tools:context=".Dep">
+
+    <ListView
+        android:id="@+id/dep_list"
+        android:layout_width="match_parent"
+        android:layout_height="350dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="210dp"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name: "
+            android:textColor="#ffffff"
+            android:textSize="22sp" />
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="John Doe"
+                android:textColor="#ffffff"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address: "
+                android:textColor="#ffffff"
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rafidea Main Street"
+                android:textColor="#ffffff"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Number: "
+                android:textColor="#ffffff"
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/cellphone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rafidea Main Street"
+                android:textColor="#ffffff"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Case Status: "
+                android:textColor="#ffffff"
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/case_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recieved"
+                android:textColor="#ffffff"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Case ID: "
+                android:textColor="#ffffff"
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/case_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="123123123"
+                android:textColor="#ffffff"
+                android:textSize="22sp"
+                android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                style="@style/dep_btns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#1dd1a1"
+                android:text="Received" />
+
+            <Button
+                style="@style/dep_btns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ff6b6b"
+                android:text="Refused" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                style="@style/dep_btns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#54a0ff"
+                android:text="on The Way" />
+
+            <Button
+                style="@style/dep_btns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#feca57"
+                android:text="Arrived" />
+
+            <Button
+                style="@style/dep_btns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00d2d3"
+                android:text="Done" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
