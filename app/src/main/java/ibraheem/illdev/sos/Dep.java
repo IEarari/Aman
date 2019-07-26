@@ -1,5 +1,6 @@
 package ibraheem.illdev.sos;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class Dep extends AppCompatActivity {
-    String User_Dep, Dep, status , caseID;
+    String User_Dep, Dep, caseID;
     FirebaseFirestore db;
     String TAG = "Dep.Java";
     ListView listView;
@@ -51,6 +52,7 @@ public class Dep extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
+                startActivity(new Intent(Dep.this , Login.class));
             }
         });
         done.setOnClickListener(new View.OnClickListener() {
