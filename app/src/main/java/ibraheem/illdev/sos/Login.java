@@ -67,12 +67,16 @@ public class Login extends AppCompatActivity {
                                                                 if (AccType.equals("Normal")) {
                                                                     Intent toSos = new Intent(Login.this, Sos.class).putExtra("Email", Email);
                                                                     startActivity(toSos);
+                                                                    finish();
                                                                 } else if (AccType.equals("Police")) {
                                                                     startActivity(new Intent(Login.this, Dep.class).putExtra("DEP", "Police"));
+                                                                    finish();
                                                                 } else if (AccType.equals("Ambulance")) {
                                                                     startActivity(new Intent(Login.this, Dep.class).putExtra("DEP", "Ambulance"));
+                                                                    finish();
                                                                 } else if (AccType.equals("Fire")) {
                                                                     startActivity(new Intent(Login.this, Dep.class).putExtra("DEP", "Fire"));
+                                                                    finish();
                                                                 }
                                                             }
                                                         }
@@ -105,7 +109,6 @@ public class Login extends AppCompatActivity {
             if (currentUser.getEmail() != null && currentUser.isEmailVerified()) {
                 progressBar.setVisibility(View.VISIBLE);
                 Email = currentUser.getEmail();
-                //
                 UID = FirebaseAuth.getInstance().getUid();
                 db.collection("users").get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -119,12 +122,16 @@ public class Login extends AppCompatActivity {
                                             if (AccType.equals("Normal")) {
                                                 Intent toSos = new Intent(Login.this, Sos.class).putExtra("Email", Email);
                                                 startActivity(toSos);
+                                                finish();
                                             } else if (AccType.equals("Police")) {
                                                 startActivity(new Intent(Login.this, Dep.class).putExtra("DEP", "Police"));
+                                                finish();
                                             } else if (AccType.equals("Ambulance")) {
                                                 startActivity(new Intent(Login.this, Dep.class).putExtra("DEP", "Ambulance"));
+                                                finish();
                                             } else if (AccType.equals("Fire")) {
                                                 startActivity(new Intent(Login.this, Dep.class).putExtra("DEP", "Fire"));
+                                                finish();
                                             }
                                         }
                                     }
@@ -142,5 +149,6 @@ public class Login extends AppCompatActivity {
     public void toSignUp(View view) {
         Intent to_sign_up = new Intent(this, SignUp.class);
         startActivity(to_sign_up);
+        finish();
     }
 }

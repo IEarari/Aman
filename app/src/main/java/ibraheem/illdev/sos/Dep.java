@@ -2,6 +2,9 @@ package ibraheem.illdev.sos;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -18,28 +22,67 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 
 public class Dep extends AppCompatActivity {
-    String User_Dep, Dep;
+    String User_Dep, Dep, status , caseID;
     FirebaseFirestore db;
     String TAG = "Dep.Java";
     ListView listView;
     TextView Name, Address, Number, caseStatus, CaseID;
-    int j = 0;
+    Button received, refused, onway, arrived, done, signout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dep);
-        /*ArrayList<array> array = new ArrayList<>();
-        while (j < 5) {
-            array.add(new array(j));
-            if (j == 4) {
-                Log.e("=>", String.valueOf(j));
-            }
-
-        }*/
+        Name = findViewById(R.id.name);
+        Address = findViewById(R.id.address);
+        Number = findViewById(R.id.cellphone);
+        caseStatus = findViewById(R.id.case_status);
+        CaseID = findViewById(R.id.case_id);
         listView = findViewById(R.id.dep_list);
         db = FirebaseFirestore.getInstance();
         User_Dep = "None";
+        received = findViewById(R.id.received);
+        refused = findViewById(R.id.refused);
+        onway = findViewById(R.id.on_way);
+        arrived = findViewById(R.id.arrived);
+        done = findViewById(R.id.done);
+        signout = findViewById(R.id.sign_out_dep);
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+            }
+        });
+        done.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeStatus("done");
+            }
+        });
+        arrived.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeStatus("arrived");
+            }
+        });
+        onway.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeStatus("on the way");
+            }
+        });
+        refused.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeStatus("refused");
+            }
+        });
+        received.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChangeStatus("received");
+            }
+        });
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             User_Dep = extras.getString("DEP");
@@ -52,31 +95,63 @@ public class Dep extends AppCompatActivity {
             } else {
                 Toast.makeText(Dep.this, "Please Contact Administration , Account Error Occurred", Toast.LENGTH_LONG).show();
             }
-            db.collection("cases").get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            int i = 0;
-                            if (task.isSuccessful()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    if (String.valueOf(document.get("Dep")).equals(Dep)) {
-                                        i++;
-                                        //Log.d(TAG, document.getId() + " => " + document.getData());
-                                        ArrayList<Cases> cases = new ArrayList<>();
-                                        CasesAdapter adapter = new CasesAdapter(Dep.this, cases);
-                                        cases.add(new Cases(String.valueOf(document.get("UserName")), String.valueOf(document.get("Phone")), String.valueOf(document.get("Status")), document.getId(), String.valueOf(document.get("Geo"))));
-                                        adapter.notifyDataSetChanged();
-                                        listView.setAdapter(adapter);
-                                        Log.e("Size =>" , String.valueOf(cases.size()));
-                                        Log.e("=>" ,String.valueOf(document.get("UserName"))+" "+ String.valueOf(document.get("Phone"))+" "+ String.valueOf(document.get("Status"))+" "+ document.getId()+" "+ String.valueOf(document.get("Geo")) );
-                                    }
-                                }
-                            } else {
-                                Log.w(TAG, "Error getting documents.", task.getException());
-                            }
+
+            Thread thread = new Thread() {
+                @Override
+                public void run() {
+                    while (true) {
+                        try {
+                            Thread.sleep(500);
+                        } catch (Exception e) {
+                            e.printStackTrace();
                         }
-                    });
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                db.collection("cases").get()
+                                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                                if (task.isSuccessful()) {
+                                                    final ArrayList<Cases> cases_array = new ArrayList<>();
+                                                    final CasesAdapter adapter = new CasesAdapter(Dep.this, cases_array);
+                                                    for (QueryDocumentSnapshot document : task.getResult()) {
+                                                        if (String.valueOf(document.get("Dep")).equals(Dep)) {
+                                                            cases_array.add(new Cases(String.valueOf(document.get("UserName")), String.valueOf(document.get("Phone")), String.valueOf(document.get("Status")), document.getId(), String.valueOf(document.get("Geo")),String.valueOf(document.get("Dep"))));
+                                                            listView.setAdapter(adapter);
+                                                            adapter.notifyDataSetChanged();
+                                                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                                                @Override
+                                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                                                    Name.setText(cases_array.get(position).getName());
+                                                                    Address.setText(cases_array.get(position).getAddress());
+                                                                    Number.setText(cases_array.get(position).getCell_number());
+                                                                    caseStatus.setText(cases_array.get(position).getStatus());
+                                                                    CaseID.setText(cases_array.get(position).getID());
+                                                                    caseID = cases_array.get(position).getID();
+                                                                }
+                                                            });
+                                                        }
+                                                    }
+                                                } else {
+                                                    Log.w(TAG, "Error getting documents.", task.getException());
+                                                }
+                                            }
+                                        });
+                            }
+                        });
+                    }
+                }
+            };
+            thread.start();
         }
 
+    }
+
+    private void ChangeStatus(String status) {
+        FirebaseFirestore firestore;
+        firestore = FirebaseFirestore.getInstance();
+        firestore.collection("cases").document(caseID).update("Status",status);
+        caseStatus.setText(status);
     }
 }

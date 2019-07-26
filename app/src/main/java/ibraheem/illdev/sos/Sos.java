@@ -30,24 +30,19 @@ import java.util.Map;
 import io.grpc.Context;
 
 public class Sos extends AppCompatActivity {
-    Button policebtn, firebtn, ambulance , sign_out;
+    Button policebtn, firebtn, ambulance , sign_out , user_cases;
     String Email, Num, Name, UID , Phone;
     String Address = "";
     FirebaseFirestore db;
     final String TAG = String.valueOf(Context.current());
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sos);
         db = FirebaseFirestore.getInstance();
-        final String TAG = "FireStore";
-        Num = "0";
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            Email = extras.getString("Email");
-        }
+        Email = FirebaseAuth.getInstance().getCurrentUser().getEmail();
         UID = FirebaseAuth.getInstance().getUid();
+        user_cases = findViewById(R.id.user_cases);
         db.collection("users").get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -98,6 +93,12 @@ public class Sos extends AppCompatActivity {
                 startActivity(new Intent (Sos.this , Login.class));
             }
         });
+        user_cases.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            startActivity(new Intent(Sos.this , User_Cases.class));
+            }
+        });
     }
 
     private void alert() {
@@ -132,7 +133,7 @@ public class Sos extends AppCompatActivity {
                                     Case.put("Geo", Address);
                                     Case.put("Dep", Num);
                                     Case.put("UserName", Name);
-                                    Case.put("Status", "Received");
+                                    Case.put("Status", "Sent");
                                     Case.put("UserID" ,FirebaseAuth.getInstance().getCurrentUser().getUid());
                                     Case.put("Phone" , Phone);
                                     // Add a new document with a generated ID

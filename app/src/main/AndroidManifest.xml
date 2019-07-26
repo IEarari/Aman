@@ -9,7 +9,8 @@
         android:roundIcon="@drawable/aman"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Dep"></activity>
+        <activity android:name=".User_Cases"></activity>
+        <activity android:name=".Dep" />
         <activity android:name=".Track" />
         <activity android:name=".Sos" />
         <activity android:name=".SignUp" />

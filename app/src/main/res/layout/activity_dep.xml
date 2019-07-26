@@ -16,106 +16,121 @@
         android:layout_width="match_parent"
         android:layout_height="210dp"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Name: "
-            android:textColor="#ffffff"
-            android:textSize="22sp" />
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Name: "
+                android:textColor="#ffffff"
+                android:textSize="22sp" />
+
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="John Doe"
+                android:text=""
                 android:textColor="#ffffff"
                 android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Address: "
                 android:textColor="#ffffff"
                 android:textSize="22sp" />
+
             <TextView
                 android:id="@+id/address"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rafidea Main Street"
+                android:text=""
                 android:textColor="#ffffff"
                 android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Number: "
                 android:textColor="#ffffff"
                 android:textSize="22sp" />
+
             <TextView
                 android:id="@+id/cellphone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rafidea Main Street"
+                android:text=""
                 android:textColor="#ffffff"
                 android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp">
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Case Status: "
                 android:textColor="#ffffff"
                 android:textSize="22sp" />
+
             <TextView
                 android:id="@+id/case_status"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recieved"
+                android:text=""
                 android:textColor="#ffffff"
                 android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Case ID: "
                 android:textColor="#ffffff"
                 android:textSize="22sp" />
+
             <TextView
                 android:id="@+id/case_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="123123123"
+                android:text=""
                 android:textColor="#ffffff"
                 android:textSize="22sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
 
@@ -129,6 +144,7 @@
             android:layout_centerHorizontal="true">
 
             <Button
+                android:id="@+id/received"
                 style="@style/dep_btns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -136,6 +152,7 @@
                 android:text="Received" />
 
             <Button
+                android:id="@+id/refused"
                 style="@style/dep_btns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -154,6 +171,7 @@
             android:layout_centerHorizontal="true">
 
             <Button
+                android:id="@+id/on_way"
                 style="@style/dep_btns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -161,6 +179,7 @@
                 android:text="on The Way" />
 
             <Button
+                android:id="@+id/arrived"
                 style="@style/dep_btns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -168,11 +187,31 @@
                 android:text="Arrived" />
 
             <Button
+                android:id="@+id/done"
                 style="@style/dep_btns"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#00d2d3"
                 android:text="Done" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
+
+            <Button
+                android:id="@+id/sign_out_dep"
+                style="@style/dep_btns"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#000000"
+                android:text="Sign Out" />
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>
