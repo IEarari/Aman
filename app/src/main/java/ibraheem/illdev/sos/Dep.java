@@ -29,7 +29,9 @@ public class Dep extends AppCompatActivity {
     ListView listView;
     TextView Name, Address, Number, caseStatus, CaseID;
     Button received, refused, onway, arrived, done, signout;
-
+    boolean isCaseDone = false;
+    int pos;
+    final ArrayList<Cases> cases_array = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +61,7 @@ public class Dep extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ChangeStatus("done");
+                cases_array.remove(pos);
             }
         });
         arrived.setOnClickListener(new View.OnClickListener() {
@@ -115,10 +118,14 @@ public class Dep extends AppCompatActivity {
                                             @Override
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                 if (task.isSuccessful()) {
-                                                    final ArrayList<Cases> cases_array = new ArrayList<>();
                                                     final CasesAdapter adapter = new CasesAdapter(Dep.this, cases_array);
                                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                                        if (String.valueOf(document.get("Dep")).equals(Dep)) {
+                                                        if(String.valueOf(document.get("Status")).equals("done")){
+                                                            isCaseDone = true;
+                                                        }else {
+                                                            isCaseDone= false;
+                                                        }
+                                                        if (String.valueOf(document.get("Dep")).equals(Dep) && !isCaseDone) {
                                                             cases_array.add(new Cases(String.valueOf(document.get("UserName")), String.valueOf(document.get("Phone")), String.valueOf(document.get("Status")), document.getId(), String.valueOf(document.get("Geo")),String.valueOf(document.get("Dep"))));
                                                             listView.setAdapter(adapter);
                                                             adapter.notifyDataSetChanged();
@@ -131,6 +138,7 @@ public class Dep extends AppCompatActivity {
                                                                     caseStatus.setText(cases_array.get(position).getStatus());
                                                                     CaseID.setText(cases_array.get(position).getID());
                                                                     caseID = cases_array.get(position).getID();
+                                                                    pos = position;
                                                                 }
                                                             });
                                                         }

@@ -24,6 +24,7 @@ public class User_Cases extends AppCompatActivity {
         final String TAG = "User_Cases";
     FirebaseFirestore db;
     ListView listView;
+    boolean isCaseDone = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,12 @@ public class User_Cases extends AppCompatActivity {
                             final ArrayList<Cases> cases_array = new ArrayList<>();
                             final UserCasesAdapter adapter = new UserCasesAdapter(User_Cases.this, cases_array);
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                if (String.valueOf(document.get("UserID")).equals(UID)) {
+                                if(String.valueOf(document.get("Status")).equals("done")){
+                                    isCaseDone = true;
+                                }else {
+                                    isCaseDone= false;
+                                }
+                                if (String.valueOf(document.get("UserID")).equals(UID) && !isCaseDone) {
                                     cases_array.add(new Cases(String.valueOf(document.get("UserName")), String.valueOf(document.get("Phone")), String.valueOf(document.get("Status")), document.getId(), String.valueOf(document.get("Geo")),String.valueOf(document.get("Dep"))));
                                     listView.setAdapter(adapter);
                                     adapter.notifyDataSetChanged();
