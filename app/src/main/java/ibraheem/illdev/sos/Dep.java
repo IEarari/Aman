@@ -119,6 +119,7 @@ public class Dep extends AppCompatActivity {
                                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                                 if (task.isSuccessful()) {
                                                     final CasesAdapter adapter = new CasesAdapter(Dep.this, cases_array);
+                                                    cases_array.clear();
                                                     for (QueryDocumentSnapshot document : task.getResult()) {
                                                         if(String.valueOf(document.get("Status")).equals("done")){
                                                             isCaseDone = true;
